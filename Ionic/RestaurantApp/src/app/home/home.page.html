@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>
+      Login Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-img src="https://buidln.clipdealer.com/000/069/598//previews/8--69598-Schriftzug%20Welcome.jpg"></ion-img>
+
+    <ion-card>
+      <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+        <ion-item class="border">
+          <ion-input formControlName="email" type="email" placeholder="email" inputmode="email"></ion-input>
+        </ion-item>
+
+        <div *ngFor="let error of errorMessages.email">
+          <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <ion-item class="border">
+          <ion-input formControlName="password" placeholder="password" type="password" inputmode="text"></ion-input>
+        </ion-item>
+
+        <div *ngFor="let error of errorMessages.password">
+            <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+      </form>
+    </ion-card>
+    <div text-center>
+      <ion-button [disabled]=!registrationForm.valid (click)="goToMain()" type="submit">Log In</ion-button>
+    </div>
+    <div text-center>
+      <ion-button color="secondary">Sign In</ion-button>
+    </div>
+  </div>
+</ion-content>

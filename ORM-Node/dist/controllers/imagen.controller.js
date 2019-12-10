@@ -31,7 +31,7 @@ function createImage(req, res) {
         case 4:
           newImagen = _context.sent;
 
-          if (!newMesa) {
+          if (!newImagen) {
             _context.next = 7;
             break;
           }

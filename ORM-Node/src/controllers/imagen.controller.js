@@ -8,7 +8,7 @@ export async function createImage(req, res) {
         }, {
             fields: ['ruta']
         });
-        if (newMesa) {
+        if (newImagen) {
             return res.json({
                 message: 'Image registered',
                 data: newImagen
