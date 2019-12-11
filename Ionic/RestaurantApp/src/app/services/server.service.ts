@@ -12,4 +12,8 @@ export class ServerService {
   getUsers(){
     return this.http.get("http://localhost:4000/api/camareros");
   }
+
+  postUser(postData){
+    return this.http.post("http://localhost:4000/api/camareros", postData);
+  }
 }

@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'confirm-page',
     loadChildren: () => import('./confirm-page/confirm-page.module').then( m => m.ConfirmPagePageModule)
   },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
 ];
 
 @NgModule({

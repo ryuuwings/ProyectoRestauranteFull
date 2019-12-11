@@ -44,10 +44,13 @@ export class HomePage implements OnInit {
       for (let i=0; i<result.data.length; i++){
         if((result.data[i].email == this.registrationForm.get('email').value) &&
         (result.data[i].contraseña == this.registrationForm.get('password').value)){
-          this.router.navigate(["/main-page"]);
+          this.router.navigate(["/confirm-page"]);
         }
       }
     });
+  }
+  goToSign(){
+    this.router.navigate(["/sign-up"])
   }
 }
 

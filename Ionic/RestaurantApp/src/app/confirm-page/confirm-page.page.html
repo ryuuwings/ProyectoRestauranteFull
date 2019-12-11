@@ -1,12 +1,87 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title text-center>Confirm Page</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="confirmForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre Cliente</ion-label>
+        <ion-input formControlName="nombre" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.nombre">
+        <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Apellido1 Cliente</ion-label>
+        <ion-input formControlName="apellido1" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.apellido1">
+        <ng-container *ngIf="apellido1.hasError(error.type) && (apellido1.dirty || apellido1.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Apellido2 Cliente</ion-label>
+        <ion-input formControlName="apellido2" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.apellido2">
+        <ng-container *ngIf="apellido2.hasError(error.type) && (apellido2.dirty || apellido2.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Fecha Factura</ion-label>
+        <ion-input formControlName="fechafactura" inputmode="date"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.fechafactura">
+        <ng-container *ngIf="fechafactura.hasError(fechafactura.type) && (fechafactura.dirty || fechafactura.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-list formGroupName = "mesa">
+      <ion-list-header>
+        <ion-label>Mesa</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">Numero Mesa</ion-label>
+        <ion-input formControlName="idmesa" inputmode="number"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.idmesa">
+        <ng-container *ngIf="idmesa.hasError(error.type) && (idmesa.dirty || idmesa.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-list formGroupName = "camarero">
+      <ion-list-header>
+        <ion-label>Camarero</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">Numero Camarero</ion-label>
+        <ion-input formControlName="idcamarero" inputmode="number"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.idcamarero">
+        <ng-container *ngIf="idcamarero.hasError(error.type) && (idcamarero.dirty || idcamarero.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-button [disabled]="!confirmForm.valid" type="submit" expand="block">
+        submit
+        
+      </ion-button>
+    </ion-list>
+  </form>
+  
 
 </ion-content>
