@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ServerService } from '../services/server.service';
+import { cliente } from '../models/clientes';
 
 @Component({
   selector: 'app-confirm-page',
@@ -8,6 +10,8 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./confirm-page.page.scss'],
 })
 export class ConfirmPagePage implements OnInit {
+
+  
 
   get nombre(){
     return this.confirmForm.get('nombre');
@@ -34,7 +38,8 @@ export class ConfirmPagePage implements OnInit {
       {type: 'required', message: 'Name is required'}
     ],
     apellido1: [
-      {type: 'required', message: 'surname1 is required'}
+      {type: 'required', message: 'surname1 is required'},
+      {type: 'pattern', message: 'Please enter a valid email addres'}
     ],
     apellido2: [
       {}
@@ -54,7 +59,7 @@ export class ConfirmPagePage implements OnInit {
     nombre: ['', [Validators.required]],
     apellido1: ['', [Validators.required]],
     apellido2: ['',],
-    fechafactura: ['', [Validators.required]],
+    fechafactura: ['', [Validators.required, Validators.pattern("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")]],
     mesa: this.FormBuilder.group({
       idmesa: ['', [Validators.required]]
     }),
@@ -63,13 +68,29 @@ export class ConfirmPagePage implements OnInit {
     })
   })
 
-  constructor(private FormBuilder: FormBuilder, private router: Router) { }
+  constructor(private FormBuilder: FormBuilder, private router: Router, private api: ServerService) { }
 
   ngOnInit() {
   }
+  private newClient;
 
   public submit(){
-    console.log(this.confirmForm.value);
-
+    
+    let postData1={
+      "nombre": this.confirmForm.get("nombre").value,
+      "apellido1": this.confirmForm.get("apellido1").value,
+      "apellido2": this.confirmForm.get("apellido2").value
+    };
+      this.api.postClient(postData1).subscribe((res:any) =>{
+        this.newClient = res.data;
+        let postData2={
+          "clienteidcliente": this.newClient.idcliente,
+          "mesaidmesa": this.confirmForm.get("mesa.idmesa").value,
+          "fechafactura":this.confirmForm.get("fechafactura").value,
+          "camareroidcamarero":this.confirmForm.get("camarero.idcamarero").value
+        }
+        this.api.postBill(postData2).subscribe();
+        this.router.navigate(["/main-page"]);
+      });
   }  
 }

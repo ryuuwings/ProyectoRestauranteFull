@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+  
   <form [formGroup]="confirmForm" (ngSubmit)="submit()">
     <ion-list>
       <ion-item>
@@ -41,7 +42,7 @@
       </div>
       <ion-item>
         <ion-label position="floating">Fecha Factura</ion-label>
-        <ion-input formControlName="fechafactura" inputmode="date"></ion-input>
+        <ion-input formControlName="fechafactura" inputmode="text"></ion-input>
       </ion-item>
       <div *ngFor="let error of errorMessages.fechafactura">
         <ng-container *ngIf="fechafactura.hasError(fechafactura.type) && (fechafactura.dirty || fechafactura.touched)">
@@ -76,11 +77,12 @@
           <small class="error-message">{{error.message}}</small>
         </ng-container>
       </div>
-      <ion-button [disabled]="!confirmForm.valid" type="submit" expand="block">
+      
+    </ion-list>
+    <ion-button [disabled]="!confirmForm.valid" type="submit" expand="block">
         submit
         
       </ion-button>
-    </ion-list>
   </form>
   
 

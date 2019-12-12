@@ -16,4 +16,11 @@ export class ServerService {
   postUser(postData){
     return this.http.post("http://localhost:4000/api/camareros", postData);
   }
+
+  postClient(postData){
+    return this.http.post("http://localhost:4000/api/clientes", postData);
+  }
+  postBill(postData){
+    return this.http.post("http://localhost:4000/api/facturas", postData);
+  }
 }
