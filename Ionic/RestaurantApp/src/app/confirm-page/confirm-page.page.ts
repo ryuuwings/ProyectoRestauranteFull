@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ServerService } from '../services/server.service';
 import { cliente } from '../models/clientes';
+import { factura } from '../models/factura';
 
 @Component({
   selector: 'app-confirm-page',
@@ -73,6 +74,7 @@ export class ConfirmPagePage implements OnInit {
   ngOnInit() {
   }
   private newClient;
+  private newFactura;
 
   public submit(){
     
@@ -89,8 +91,13 @@ export class ConfirmPagePage implements OnInit {
           "fechafactura":this.confirmForm.get("fechafactura").value,
           "camareroidcamarero":this.confirmForm.get("camarero.idcamarero").value
         }
-        this.api.postBill(postData2).subscribe();
-        this.router.navigate(["/main-page"]);
+        this.api.postBill(postData2).subscribe((res:any)=>{
+          this.newFactura = res.data;
+          this.router.navigate(["/main-page"]);
+          localStorage.setItem("idFactura", this.newFactura.idfactura);
+          console.log(localStorage.getItem("idFactura"));
+        });
+        
       });
   }  
 }

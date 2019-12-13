@@ -23,4 +23,10 @@ export class ServerService {
   postBill(postData){
     return this.http.post("http://localhost:4000/api/facturas", postData);
   }
+  getDetailsByBill(){
+    return this.http.get<any[]>("http://localhost:4000/api/detalles/facturas/"+ localStorage.getItem("idFactura"))
+  }
+  deleteDetail(iddetalles){
+    return this.http.delete("http://localhost:4000/api/detalles/"+iddetalles)
+  }
 }

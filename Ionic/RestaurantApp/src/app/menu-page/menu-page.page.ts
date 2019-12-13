@@ -16,4 +16,11 @@ export class MenuPagePage implements OnInit {
   goToProduct(){
     this.router.navigate(['/produc-page']);
   }
+  goToAddProduct(){
+    this.router.navigate(['/create-product-page']);
+  }
+
+  goToMain(){
+    this.router.navigate(['/main-page']);
+  }
 }

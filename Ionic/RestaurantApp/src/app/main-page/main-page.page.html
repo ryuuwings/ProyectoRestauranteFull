@@ -10,7 +10,7 @@
       <ion-card>
         <ion-card-content>
           <ion-img
-            src="https://cocina-casera.com/wp-content/uploads/2017/12/Flan-de-leche-condensada.-Postre-casero.jpg">
+            src="assets/images/entrantes.jpg">
           </ion-img>
           <p text-center>Entrante</p>
         </ion-card-content>
@@ -21,7 +21,7 @@
       <ion-card>
         <ion-card-content>
           <ion-img (click)="goToMenu()"
-            src="https://cocina-casera.com/wp-content/uploads/2017/12/Flan-de-leche-condensada.-Postre-casero.jpg">
+            src="assets/images/primer.jpg">
           </ion-img>
           <p text-center>Primer Plato</p>
         </ion-card-content>
@@ -33,7 +33,7 @@
       <ion-card>
         <ion-card-content>
           <ion-img
-            src="https://cocina-casera.com/wp-content/uploads/2017/12/Flan-de-leche-condensada.-Postre-casero.jpg">
+            src="assets/images/segundo.jpg">
           </ion-img>
           <p text-center>Segundo Plato</p>
         </ion-card-content>
@@ -43,7 +43,7 @@
     <ion-col>
       <ion-card>
         <ion-card-content>
-          <ion-img src="https://cdn1.cocina-familiar.com/recetas/345-sopa-de-garbanzos-al-estilo-asiatico.JPG">
+          <ion-img src="assets/images/postre.jpg">
           </ion-img>
           <p text-center>Postre</p>
         </ion-card-content>
@@ -51,25 +51,17 @@
     </ion-col>
   </ion-row>
 
-  <ion-list inset="true">
+  <ion-list>
     <ion-list-header>
       Carro
     </ion-list-header>
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
+    <ion-item *ngFor="let detalle of variable1">
+      <ion-label>{{detalle.platoidplato}}</ion-label>
+      <ion-label>{{detalle.nota}}</ion-label>
+      <ion-button (click)="deleteDetail(detalle.iddetalles)"><ion-icon name="trash"></ion-icon>
+        </ion-button>
     </ion-item>
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-item>
+    
   </ion-list>
 
 

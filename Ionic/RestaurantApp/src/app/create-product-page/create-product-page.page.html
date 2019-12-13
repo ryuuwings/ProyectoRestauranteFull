@@ -8,5 +8,85 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="createProductForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Size</ion-label>
+        <ion-input formControlName="tamano" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.tamano">
+        <ng-container *ngIf="tamano.hasError(error.type) && (tamano.dirty || tamano.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
 
+      <ion-item>
+        <ion-label position="floating">Product Name</ion-label>
+        <ion-input formControlName="nombreplato" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.nombreplato">
+        <ng-container *ngIf="nombreplato.hasError(error.type) && (nombreplato.dirty || nombreplato.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Allergens</ion-label>
+        <ion-input formControlName="allergens" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.allergens">
+        <ng-container *ngIf="allergens.hasError(error.type) && (allergens.dirty || allergens.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-input formControlName="descripcion" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.descripcion">
+        <ng-container *ngIf="descripcion.hasError(descripcion.type) && (descripcion.dirty || descripcion.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Nutritional info</ion-label>
+        <ion-input formControlName="infonutricional" type="infonutricional" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.infonutricional">
+        <ng-container *ngIf="infonutricional.hasError(infonutricional.type) && (infonutricional.dirty || infonutricional.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Price</ion-label>
+        <ion-input formControlName="precio" type="number" inputmode="number"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.precio">
+        <ng-container *ngIf="precio.hasError(precio.type) && (precio.dirty || precio.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Type</ion-label>
+        <ion-input formControlName="tipo" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.tipo">
+        <ng-container *ngIf="tipo.hasError(tipo.type) && (tipo.dirty || tipo.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-item>
+      <ion-label position="floating">Imagen Relative Route (must be on assets)</ion-label>
+      <ion-input formControlName="ruta" inputmode="text"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.infonutricional">
+      <ng-container *ngIf="ruta.hasError(ruta.type) && (ruta.dirty || ruta.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+  </form>
+  <div text-center>
+    <ion-button [disabled]=!createProductForm.valid (click)="submit()" expand="block">Sign In</ion-button>
+  </div>
 </ion-content>
